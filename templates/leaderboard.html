@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Donation Leaderboard</h1>
+
+    {% if top_donor %}
+        <p>The donor with the most donations is:</p>
+        <p><strong>Email:</strong> {{ top_donor[0] }}</p>
+        <p><strong>Number of Donations:</strong> {{ top_donor[1] }}</p>
+    {% else %}
+        <p>No donations available yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

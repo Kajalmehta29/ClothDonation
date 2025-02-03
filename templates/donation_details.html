@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliShare | Donation Details</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #0f1729;
+            --secondary-bg: #1a2238;
+            --accent-color: #4ecdc4;
+            --text-color: #e6e6e6;
+            --card-bg: #1e293b;
+            --ai-glow: rgba(78, 205, 196, 0.3);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .donation-details-container {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            border: 1px solid var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .page-title {
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .donation-detail {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--card-bg);
+            padding-bottom: 10px;
+        }
+        .donation-detail strong {
+            color: var(--accent-color);
+        }
+        .donation-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        @media (max-width: 480px) {
+            .donation-details-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-details-container">
+        <h1 class="page-title">Donation Details</h1>
+        
+        <div class="donation-detail">
+            <strong>Name:</strong> 
+            <span>{{ donation.name }}</span>
+        </div>
+        
+        <div class="donation-detail">
+            <strong>Email:</strong> 
+            <span>{{ donation.email }}</span>
+        </div>
+        
+        <div class="donation-detail">
+            <strong>Description:</strong> 
+            <span>{{ donation.description }}</span>
+        </div>
+        
+        <img src="{{ donation.image_path }}" alt="{{ donation.name }} image" class="donation-image">
+        
+        <div class="donation-detail">
+            <strong>Donation ID:</strong> 
+            <span>{{ donation.unique_code }}</span>
+        </div>
+    </div>
+</body>
+</html>

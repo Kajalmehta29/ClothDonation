@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Donate Food</title>
+</head>
+<body>
+    <h1>Donate Food</h1>
+    <form method="POST">
+        <label for="food_name">Food Name:</label>
+        <input type="text" id="food_name" name="food_name" required><br>
+
+        <label for="quantity">Quantity (in kg or units):</label>
+        <input type="text" id="quantity" name="quantity" required><br>
+
+        <label for="expiry_date">Expiry Date:</label>
+        <input type="date" id="expiry_date" name="expiry_date" required><br>
+
+        <label for="location">Pickup Location:</label>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="notes">Additional Notes:</label>
+        <textarea id="notes" name="notes"></textarea><br>
+
+        <button type="submit">Submit Donation</button>
+    </form>
+</body>
+</html>

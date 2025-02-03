@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Notifications</title>
+</head>
+<body>
+    <h1>Notifications</h1>
+    <ul>
+        {% for notification in notifications %}
+            <li>
+                Donation: {{ notification.donation_name }}<br>
+                Interested Viewer: {{ notification.viewer_email }}<br>
+                Notified: {{ 'Yes' if notification.notified else 'No' }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

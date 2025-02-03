@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Portal</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #0f1729;
+            --secondary-bg: #1a2238;
+            --accent-color: #4ecdc4;
+            --text-color: #e6e6e6;
+            --card-bg: #1e293b;
+            --ai-glow: rgba(78, 205, 196, 0.3);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .page-title {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+        .interface {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 15px 30px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--ai-glow);
+        }
+        @media (max-width: 600px) {
+            .interface {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">Welcome to the Donation Portal</h1>
+    <div class="interface">
+        <a href="/donor" class="button">Donor</a>
+        <a href="/viewer" class="button">Viewer</a>
+    </div>
+</body>
+</html>

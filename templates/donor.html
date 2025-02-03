@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Donor Portal</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #0f1729;
+            --secondary-bg: #1a2238;
+            --accent-color: #4ecdc4;
+            --text-color: #e6e6e6;
+            --card-bg: #1e293b;
+            --ai-glow: rgba(78, 205, 196, 0.3);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .page-title {
+            color: var(--accent-color);
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .nav-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--ai-glow);
+        }
+        .donation-form {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--card-bg);
+        }
+        .donation-form h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .donation-form input, 
+        .donation-form textarea, 
+        .donation-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            border-radius: 6px;
+        }
+        .donation-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .donation-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--ai-glow);
+        }
+        .donations {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--card-bg);
+        }
+        .donations h2 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .donation-card button {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .donation-card button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--ai-glow);
+        }
+
+.donation-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.donation-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.donation-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+        .points{
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--card-bg);
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--accent-color);
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #chat-message {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        #send-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--ai-glow);
+        }
+        #messages {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="nav-btn">Back to Home</a>
+        
+        <h1 class="page-title">Welcome to the Donation Portal</h1>
+        <p class="points">Your reward points: {{ points }}</p>
+
+        <!-- Form for adding a new donation -->
+        <form class="donation-form" action="/donor" method="POST" enctype="multipart/form-data">
+            <h2>Add a New Donation</h2>
+            <input type="text" name="name" placeholder="Item Name" required>
+            <textarea name="description" placeholder="Description"></textarea>
+            <input type="file" name="image" required>
+            
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Unisex">Unisex</option>
+            </select>
+        
+            <label for="size">Size:</label>
+            <select name="size" required>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        
+            <label for="kids">Kids Item:</label>
+            <input type="checkbox" name="kids">
+        
+            <label for="item_type">Item Type:</label>
+            <select name="item_type" required>
+                <option value="Clothing">Clothing</option>
+                <option value="Toys">Toys</option>
+                <option value="Books">Books</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="location">Location:</label>
+            <input type="text" name="location" placeholder="Enter Location(City)" required>
+        
+            <button type="submit">Add Donation</button>
+        </form>
+
+        <!-- Donor's contributions -->
+        <div class="donations">
+            <h2>Your Donations</h2>
+            <p style="text-align: center; margin-bottom: 20px;">You have donated {{ donor_count }} item(s).</p>
+            <div class="donation-list">
+            {% for donation in donation %}
+            <div class="donation-card">
+                <img src="{{ url_for('static', filename=donation.image_path.split('static/')[1]) }}" alt="Clothing Image">
+                <p><strong>Name:</strong> {{ donation.name }}</p>
+                <p><strong>Description:</strong> {{ donation.description }}</p>
+                
+                <button onclick="openChat('{{ donation.id }}')">View Messages</button>
+
+                {% if not donation.donated %}
+                <button class="mark-donated-btn" data-donation-id="{{ donation.id }}">Mark as Donated</button>
+                {% else %}
+                <p><strong>Status:</strong> Donated</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Chat Popup Modal -->
+        <div id="chat-popup" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeChat()">&times;</span>
+                <h3>Chat with <span id="chat-with-email"></span></h3>
+                <div id="messages"></div>
+                <input type="text" id="chat-message" placeholder="Type your message">
+                <button id="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // The existing JavaScript from the previous HTML file remains the same
+        document.querySelectorAll('.mark-donated-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const donationId = this.getAttribute('data-donation-id');
+                
+                fetch(`/mark_as_donated/${donationId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.message === 'Donation marked as donated!') {
+                        this.textContent = 'Donated';
+                        this.disabled = true;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            });
+        });
+
+        let currentDonationId = null;
+        let chatWithEmail = null;
+
+        function openChat(donationId, email) {
+            currentDonationId = donationId;
+            chatWithEmail = email;
+            document.getElementById('chat-with-email').textContent = email;
+            document.getElementById('chat-popup').style.display = 'flex';
+            loadMessages();
+        }
+
+        function closeChat() {
+            document.getElementById('chat-popup').style.display = 'none';
+        }
+
+        function loadMessages() {
+            fetch(`/get_messages/${currentDonationId}`)
+                .then(response => response.json())
+                .then(messages => {
+                    const messagesDiv = document.getElementById('messages');
+                    messagesDiv.innerHTML = '';
+                    messages.forEach(msg => {
+                        const messageEl = document.createElement('p');
+                        messageEl.textContent = `${msg.sender_email}: ${msg.message} (${msg.timestamp})`;
+                        messagesDiv.appendChild(messageEl);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function sendMessage() {
+            const message = document.getElementById('chat-message').value;
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ donation_id: currentDonationId, message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                loadMessages(); // Refresh messages
+                document.getElementById('chat-message').value = ''; // Clear input
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
